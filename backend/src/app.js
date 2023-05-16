@@ -1,20 +1,30 @@
-import express from 'express';
-import routes from './routes';
+import express from "express";
+import mongoose from "mongoose";
+import routes from "./routes";
 
-class App{
-       constructor(){
-              this.server = express();
-              this.middlewares();
-              this.routes();
-       }
+class App {
+  constructor() {
+    this.server = express();
 
-       middlewares(){
-              this.server.use(express.json());
-       }
+    mongoose.connect(
+      "mongodb+srv://devhouse:devhouse@cluster0.3gw9vh9.mongodb.net/devhouse?retryWrites=true&w=majority",
+      {
+        useNewUrlParse: true,
+        useUnifiedTopology: true,
+      }
+    );
 
-       routes(){
-              this.server.use(routes);
-       }
+    this.middlewares();
+    this.routes();
+  }
+
+  middlewares() {
+    this.server.use(express.json());
+  }
+
+  routes() {
+    this.server.use(routes);
+  }
 }
 
 export default new App().server;
