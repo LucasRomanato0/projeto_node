@@ -9,7 +9,7 @@ class App {
     mongoose.connect(
       "mongodb+srv://devhouse:devhouse@cluster0.3gw9vh9.mongodb.net/devhouse?retryWrites=true&w=majority",
       {
-        useNewUrlParse: true,
+        useNewUrlParser: true,
         useUnifiedTopology: true,
       }
     );
