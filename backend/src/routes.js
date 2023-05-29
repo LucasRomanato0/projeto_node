@@ -4,13 +4,15 @@ import uploadConfig from "./config/upload";
 
 import SessionController from "./controllers/SessionController";
 import HouseController from "./controllers/HouseController";
-import House from "./models/House";
+import DashboardController from "./controllers/DashboardController";
 
 const routes = new Router();
 const upload = multer(uploadConfig);
 
+//Users
 routes.post("/sessions", SessionController.store);
 
+//Houses
 routes.post("/houses", upload.single("thumbnail"), HouseController.store);
 routes.get("/houses", HouseController.index);
 routes.put(
@@ -19,5 +21,8 @@ routes.put(
   HouseController.update
 );
 routes.delete("/houses", HouseController.destroy);
+
+//Dashboard
+routes.get("/dashboard", DashboardController.show);
 
 export default routes;
